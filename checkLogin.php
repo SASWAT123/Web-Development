@@ -16,7 +16,8 @@ if ($result->num_rows > 0) {
 		if($row["password"] === $password)
 		{
 		   $_SESSION['counter'] = 1;
-		    setcookie("regID", "267", time()+3600, "/");
+		    setcookie("regID", $regID, time()+3600, "/");
+		    setcookie("predefregID",$regID, time()+3600, "/");
 
 			header("LOCATION:index.php");
 		}

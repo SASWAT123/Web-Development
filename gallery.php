@@ -1,12 +1,17 @@
 <?php
 
 session_start();
-if(! isset( $_SESSION['counter'] ) ) {
-  if (!($_SESSION['counter'] ==1)) {
-    header("LOCATION:login.php");
+include 'config.php';
+if (isset($_COOKIE["regID"])) {
+  $regID = $_COOKIE["regID"];
+  $sql = "SELECT name from user where regID='$regID'";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      $name = $row['name'];
+    }
   }
-      $_SESSION['counter'] += 1;
-   }
+}
 
 ?>
 
@@ -52,7 +57,7 @@ if(! isset( $_SESSION['counter'] ) ) {
                     <span class="icon icon-bar"></span>
                     <span class="icon icon-bar"></span>
                </button>
-               <a href="index.php" class="navbar-brand">THE TRIP TRANCE</a>
+               <a href="index.php" class="navbar-brand">The Trip Trance </a>
           </div>
           <div class="collapse navbar-collapse">
                <ul class="nav navbar-nav navbar-right">
@@ -60,6 +65,7 @@ if(! isset( $_SESSION['counter'] ) ) {
                     <li class="active"><a href="gallery.php">Gallery</a></li>
                    <li><a href="share.php">Share</a></li>
                    <li><a href="signout.php">Signout</a></li>
+                   <li><a href="#"> <?php echo $name; ?> </a></li>
                </ul>
           </div>
 

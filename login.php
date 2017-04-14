@@ -1,7 +1,9 @@
 <?php
 
 include 'config.php';
-
+if (isset($_COOKIE["predefregID"])) {
+	$preRegID = $_COOKIE["predefregID"];
+}
 
 
 ?>
@@ -42,7 +44,8 @@ include 'config.php';
 			  <form method="POST" action="checkLogin.php">
 			    <span>regID</span>
 
-			    <input type="text" name="regID" class="form-control">
+			    <!-- <input type="text" name="regID" class="form-control"> -->
+			    <?php echo "<input type='text' name='regID' value='$preRegID' class='form-control'>"; ?>
 			    <br>
 			    <span>Password</span>
 
